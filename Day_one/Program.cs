@@ -99,13 +99,13 @@ namespace Day_1
                 Console.WriteLine("3 - Return a new list that contains FullName only");
                 Console.WriteLine("4 - Return 3 lists difference");
                 Console.WriteLine("5 - Return the first person who born in Ha Noi");
-                Console.WriteLine("6 - Exit");
 
                 int selected = int.Parse(Console.ReadLine());
 
                 switch (selected)
                 {
                     case 1:
+
                         foreach (Member member in members)
                         {
                             if (member.Gender == "Male")
@@ -113,6 +113,7 @@ namespace Day_1
                                 Console.WriteLine(member.ToString());
                             }
                         }
+
                         break;
                     case 2:
                         Member oldestUser = null;
@@ -130,25 +131,30 @@ namespace Day_1
                                 oldestUser = member;
                             }
                         }
+
                         Console.WriteLine(oldestUser.ToString());
+
                         break;
                     case 3:
+
                         foreach (Member member in members)
                         {
-                            Console.WriteLine(member.LastName + " " + member.FirstName);
+                            Console.WriteLine(member.FullName);
                         }
+
                         break;
                     case 4:
+
                         Console.WriteLine("1 - List of members who has birth year is 2000");
                         Console.WriteLine("2 - List of members who has birth year greater than 2000");
                         Console.WriteLine("3 - List of members who has birth year less than 2000");
-                        Console.WriteLine("4 - Exit");
 
                         int choice = int.Parse(Console.ReadLine());
 
                         switch (choice)
                         {
                             case 1:
+
                                 foreach (Member member in members)
                                 {
                                     if (member.DateOfBirth.Year == 2000)
@@ -156,8 +162,10 @@ namespace Day_1
                                         Console.WriteLine(member.ToString());
                                     }
                                 }
+
                                 break;
                             case 2:
+
                                 foreach (Member member in members)
                                 {
                                     if (member.DateOfBirth.Year < 2000)
@@ -165,8 +173,10 @@ namespace Day_1
                                         Console.WriteLine(member.ToString());
                                     }
                                 }
+
                                 break;
                             case 3:
+
                                 foreach (Member member in members)
                                 {
                                     if (member.DateOfBirth.Year > 2000)
@@ -174,9 +184,7 @@ namespace Day_1
                                         Console.WriteLine(member.ToString());
                                     }
                                 }
-                                break;
 
-                            case 4:
                                 break;
 
                             default:
@@ -198,13 +206,12 @@ namespace Day_1
                             }
                             index++;
                         }
-                        break;
 
-                    case 6:
                         break;
 
                     default:
                         Console.WriteLine("Please enter another number:");
+
                         break;
                 }
             }

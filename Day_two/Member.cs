@@ -18,5 +18,14 @@ namespace Day_1
             return this.FirstName + " " + this.LastName + " " + this.Gender + " " + this.DateOfBirth + " " +
              this.PhoneNumber + " " + this.BirthPlace + " " + this.IsGraduated;
         }
+
+        public string FullName
+        {
+            get
+            {
+                var FullName = FirstName + " " + LastName;
+                return FullName;
+            }
+        }
     }
 }

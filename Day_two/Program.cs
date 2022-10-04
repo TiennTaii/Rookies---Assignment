@@ -100,7 +100,6 @@ namespace Day_1
                 Console.WriteLine("3 - Return a new list that contains FullName only");
                 Console.WriteLine("4 - Return 3 lists difference");
                 Console.WriteLine("5 - Return the first person who born in Ha Noi");
-                Console.WriteLine("6 - Exit");
 
                 int selected = int.Parse(Console.ReadLine());
 
@@ -113,9 +112,10 @@ namespace Day_1
                         {
                             Console.WriteLine(member);
                         }
-                        break;
 
+                        break;
                     case 2:
+
                         Member oldestUser = members.OrderBy(member => member.DateOfBirth.Year).First();
 
                         Console.WriteLine(oldestUser.ToString());
@@ -123,19 +123,19 @@ namespace Day_1
 
                     case 3:
                         var queryFullName = from member in members
-                                            select member.LastName + " " + member.FirstName;
+                                            select member.FullName;
 
                         foreach (var member in queryFullName)
                         {
                             Console.WriteLine(member);
                         }
-                        break;
 
+                        break;
                     case 4:
+
                         Console.WriteLine("1 - List of members who has birth year is 2000");
                         Console.WriteLine("2 - List of members who has birth year greater than 2000");
                         Console.WriteLine("3 - List of members who has birth year less than 2000");
-                        Console.WriteLine("4 - Exit");
 
                         int choice = int.Parse(Console.ReadLine());
 
@@ -148,8 +148,8 @@ namespace Day_1
                                 {
                                     Console.WriteLine(member);
                                 }
-                                break;
 
+                                break;
                             case 2:
                                 var queryGreater = members.FindAll(member => member.DateOfBirth.Year < 2000);
 
@@ -157,8 +157,8 @@ namespace Day_1
                                 {
                                     Console.WriteLine(member);
                                 }
-                                break;
 
+                                break;
                             case 3:
                                 var queryLess = from member in members
                                                 where member.DateOfBirth.Year > 2000
@@ -168,9 +168,7 @@ namespace Day_1
                                 {
                                     Console.WriteLine(member);
                                 }
-                                break;
 
-                            case 4:
                                 break;
 
                             default:
@@ -183,9 +181,7 @@ namespace Day_1
                         var queryFirstPerson = members.FindAll(member => member.BirthPlace == "Ha Noi").First();
 
                         Console.WriteLine(queryFirstPerson);
-                        break;
 
-                    case 6:
                         break;
 
                     default:
