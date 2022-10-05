@@ -1,0 +1,14 @@
+D:\NashTech\Assignment\ClockAppConsole\obj\Debug\netcoreapp3.1\ClockAppConsole.csproj.AssemblyReference.cache
+D:\NashTech\Assignment\ClockAppConsole\obj\Debug\netcoreapp3.1\ClockAppConsole.GeneratedMSBuildEditorConfig.editorconfig
+D:\NashTech\Assignment\ClockAppConsole\obj\Debug\netcoreapp3.1\ClockAppConsole.AssemblyInfoInputs.cache
+D:\NashTech\Assignment\ClockAppConsole\obj\Debug\netcoreapp3.1\ClockAppConsole.AssemblyInfo.cs
+D:\NashTech\Assignment\ClockAppConsole\obj\Debug\netcoreapp3.1\ClockAppConsole.csproj.CoreCompileInputs.cache
+D:\NashTech\Assignment\ClockAppConsole\bin\Debug\netcoreapp3.1\ClockAppConsole.exe
+D:\NashTech\Assignment\ClockAppConsole\bin\Debug\netcoreapp3.1\ClockAppConsole.deps.json
+D:\NashTech\Assignment\ClockAppConsole\bin\Debug\netcoreapp3.1\ClockAppConsole.runtimeconfig.json
+D:\NashTech\Assignment\ClockAppConsole\bin\Debug\netcoreapp3.1\ClockAppConsole.runtimeconfig.dev.json
+D:\NashTech\Assignment\ClockAppConsole\bin\Debug\netcoreapp3.1\ClockAppConsole.dll
+D:\NashTech\Assignment\ClockAppConsole\bin\Debug\netcoreapp3.1\ClockAppConsole.pdb
+D:\NashTech\Assignment\ClockAppConsole\obj\Debug\netcoreapp3.1\ClockAppConsole.dll
+D:\NashTech\Assignment\ClockAppConsole\obj\Debug\netcoreapp3.1\ClockAppConsole.pdb
+D:\NashTech\Assignment\ClockAppConsole\obj\Debug\netcoreapp3.1\ClockAppConsole.genruntimeconfig.cache
