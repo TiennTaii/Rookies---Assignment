@@ -170,10 +170,6 @@ namespace Day_1
                                 }
 
                                 break;
-
-                            default:
-                                Console.WriteLine("Please enter another number:");
-                                break;
                         }
                         break;
 
@@ -182,10 +178,6 @@ namespace Day_1
 
                         Console.WriteLine(queryFirstPerson);
 
-                        break;
-
-                    default:
-                        Console.WriteLine("Please enter another number:");
                         break;
                 }
             }
