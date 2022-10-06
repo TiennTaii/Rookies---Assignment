@@ -1,24 +1,14 @@
-﻿using System;
-using System.Timers;
-
-namespace ClockAppConsole
+﻿namespace Day3_EVENT
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Timer timer = new Timer(1000);
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
+            Clock clock = new Clock();
+            DisplayClock displayClock = new DisplayClock();
 
-            Console.ReadKey();
-
-            timer.Stop();
-        }
-
-        private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            Console.WriteLine(DateTime.Now);
+            displayClock.Subcribe(clock);
+            clock.Run();
         }
     }
 }

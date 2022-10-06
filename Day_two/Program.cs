@@ -18,7 +18,7 @@ namespace Day_1
                 DateOfBirth = new DateTime(2000, 03, 11),
                 PhoneNumber = "0987678888",
                 BirthPlace = "Vinh Phuc",
-                IsGraduated = true
+                Graduated = "true"
             });
             members.Add(new Member
             {
@@ -28,7 +28,7 @@ namespace Day_1
                 DateOfBirth = new DateTime(1998, 02, 23),
                 PhoneNumber = "0487348375",
                 BirthPlace = "Ha Nam",
-                IsGraduated = true
+                Graduated = "true"
             });
             members.Add(new Member
             {
@@ -38,7 +38,7 @@ namespace Day_1
                 DateOfBirth = new DateTime(2002, 08, 13),
                 PhoneNumber = "0328742341",
                 BirthPlace = "Ha Noi",
-                IsGraduated = false
+                Graduated = "alse"
             });
             members.Add(new Member
             {
@@ -48,7 +48,7 @@ namespace Day_1
                 DateOfBirth = new DateTime(2000, 06, 13),
                 PhoneNumber = "0238723836",
                 BirthPlace = "Ha Nam",
-                IsGraduated = true
+                Graduated = "true"
             });
             members.Add(new Member
             {
@@ -58,7 +58,7 @@ namespace Day_1
                 DateOfBirth = new DateTime(1999, 10, 27),
                 PhoneNumber = "0888335263",
                 BirthPlace = "Ha Noi",
-                IsGraduated = true
+                Graduated = "true"
             });
             members.Add(new Member
             {
@@ -68,7 +68,7 @@ namespace Day_1
                 DateOfBirth = new DateTime(2001, 07, 03),
                 PhoneNumber = "0987678888",
                 BirthPlace = "Quang Ninh",
-                IsGraduated = false
+                Graduated = "alse"
             });
             members.Add(new Member
             {
@@ -78,7 +78,7 @@ namespace Day_1
                 DateOfBirth = new DateTime(1998, 09, 29),
                 PhoneNumber = "0329843271",
                 BirthPlace = "Ha Noi",
-                IsGraduated = true
+                Graduated = "true"
             });
             members.Add(new Member
             {
@@ -88,7 +88,7 @@ namespace Day_1
                 DateOfBirth = new DateTime(2000, 11, 26),
                 PhoneNumber = "0239874231",
                 BirthPlace = "Vinh Phuc",
-                IsGraduated = true
+                Graduated = "true"
             });
 
             while (true)
@@ -106,9 +106,9 @@ namespace Day_1
                 switch (selected)
                 {
                     case 1:
-                        var queryMale = members.FindAll(member => member.Gender == "Male");
+                        var selectMale = members.FindAll(member => member.Gender == "Male");
 
-                        foreach (var member in queryMale)
+                        foreach (var member in selectMale)
                         {
                             Console.WriteLine(member);
                         }
@@ -122,10 +122,10 @@ namespace Day_1
                         break;
 
                     case 3:
-                        var queryFullName = from member in members
-                                            select member.FullName;
+                        var selectFullName = from member in members
+                                             select member.FullName;
 
-                        foreach (var member in queryFullName)
+                        foreach (var member in selectFullName)
                         {
                             Console.WriteLine(member);
                         }
@@ -142,29 +142,29 @@ namespace Day_1
                         switch (choice)
                         {
                             case 1:
-                                var queryEqual = members.Where(member => member.DateOfBirth.Year == 2000);
+                                var selectEqual = members.Where(member => member.DateOfBirth.Year == 2000);
 
-                                foreach (Member member in queryEqual)
+                                foreach (Member member in selectEqual)
                                 {
                                     Console.WriteLine(member);
                                 }
 
                                 break;
                             case 2:
-                                var queryGreater = members.FindAll(member => member.DateOfBirth.Year < 2000);
+                                var selectGreater = members.FindAll(member => member.DateOfBirth.Year > 2000);
 
-                                foreach (Member member in queryGreater)
+                                foreach (Member member in selectGreater)
                                 {
                                     Console.WriteLine(member);
                                 }
 
                                 break;
                             case 3:
-                                var queryLess = from member in members
-                                                where member.DateOfBirth.Year > 2000
-                                                select member;
+                                var selectLess = from member in members
+                                                 where member.DateOfBirth.Year < 2000
+                                                 select member;
 
-                                foreach (Member member in queryLess)
+                                foreach (Member member in selectLess)
                                 {
                                     Console.WriteLine(member);
                                 }
@@ -174,9 +174,9 @@ namespace Day_1
                         break;
 
                     case 5:
-                        var queryFirstPerson = members.FindAll(member => member.BirthPlace == "Ha Noi").First();
+                        var selectFirstPerson = members.FirstOrDefault(member => member.BirthPlace == "Ha Noi");
 
-                        Console.WriteLine(queryFirstPerson);
+                        Console.WriteLine(selectFirstPerson);
 
                         break;
                 }

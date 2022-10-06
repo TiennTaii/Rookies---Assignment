@@ -1,34 +1,44 @@
-﻿using System;
-
-namespace PrimeNumbersApp
+﻿public class Program
 {
-    class Program
+    public static void Main(String[] args)
     {
-        static void Main(string[] args)
+        Task.WhenAll(GetPrimeNumbers(0, 100));
+
+        Console.ReadKey();
+    }
+
+    static async Task GetPrimeNumbers(int minimum, int maximum)
+    {
+        await Task.Run(() =>
         {
-            bool isPrime = true;
-            int i, j;
-
-            Console.WriteLine("Prime Numbers : ");
-
-            for (i = 2; i <= 100; i++) // 0 and 1 not prime number!
+            for (int i = minimum; i <= maximum; i++)
             {
-                for (j = 2; j <= 100; j++)
+                if (IsPrimeNumber(i))
                 {
-                    if (i != j && i % j == 0)
-                    {
-                        isPrime = false;
-                        break;
-                    }
+                    Console.WriteLine(" " + i);
                 }
+            }
+        });
+    }
 
-                if (isPrime)
-                {
-                    Console.WriteLine(i);
-                }
+    static bool IsPrimeNumber(int number)
+    {
+        int i;
 
-                isPrime = true;
+        for (i = 2; i <= number - 1; i++)
+        {
+            if (number % i == 0)
+            {
+                return false;
             }
         }
+
+        if (number == i)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
+

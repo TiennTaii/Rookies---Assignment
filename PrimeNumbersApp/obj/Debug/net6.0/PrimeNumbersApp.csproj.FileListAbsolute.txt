@@ -1,0 +1,15 @@
+D:\NashTech\Assignment\PrimeNumbersApp\bin\Debug\net6.0\PrimeNumbersApp.exe
+D:\NashTech\Assignment\PrimeNumbersApp\bin\Debug\net6.0\PrimeNumbersApp.deps.json
+D:\NashTech\Assignment\PrimeNumbersApp\bin\Debug\net6.0\PrimeNumbersApp.runtimeconfig.json
+D:\NashTech\Assignment\PrimeNumbersApp\bin\Debug\net6.0\PrimeNumbersApp.dll
+D:\NashTech\Assignment\PrimeNumbersApp\bin\Debug\net6.0\PrimeNumbersApp.pdb
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\PrimeNumbersApp.csproj.AssemblyReference.cache
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\PrimeNumbersApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\PrimeNumbersApp.AssemblyInfoInputs.cache
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\PrimeNumbersApp.AssemblyInfo.cs
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\PrimeNumbersApp.csproj.CoreCompileInputs.cache
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\PrimeNumbersApp.dll
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\refint\PrimeNumbersApp.dll
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\PrimeNumbersApp.pdb
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\PrimeNumbersApp.genruntimeconfig.cache
+D:\NashTech\Assignment\PrimeNumbersApp\obj\Debug\net6.0\ref\PrimeNumbersApp.dll
