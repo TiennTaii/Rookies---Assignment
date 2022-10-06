@@ -2,7 +2,7 @@ using System;
 
 public class Clock
 {
-    private int second;
+    private int _second;
     public delegate void ClockTickHandler(object clock, TimeInfoEventArgs timeInfoEvent);
     public event ClockTickHandler clockTickEvent;
 
@@ -21,7 +21,7 @@ public class Clock
             System.Threading.Thread.Sleep(1000);
             DateTime now = DateTime.Now;
 
-            if (now.Second != this.second)
+            if (now.Second != this._second)
             {
                 TimeInfoEventArgs timeInfoEventArgs = new TimeInfoEventArgs(
                     now.Hour,
