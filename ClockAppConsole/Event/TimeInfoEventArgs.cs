@@ -1,6 +1,5 @@
 using System;
 
-
 public class TimeInfoEventArgs : EventArgs
 {
     public readonly int hour;
