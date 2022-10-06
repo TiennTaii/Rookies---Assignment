@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\NashTech\\Assignment\\PrimeNumbersApp\\PrimeNumbersApp.csproj": {}
+    "D:\\NashTech\\Assignment\\PrimeNumbersApp\\PrimeNumbersApp.csproj": {}
   },
   "projects": {
-    "d:\\NashTech\\Assignment\\PrimeNumbersApp\\PrimeNumbersApp.csproj": {
+    "D:\\NashTech\\Assignment\\PrimeNumbersApp\\PrimeNumbersApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\NashTech\\Assignment\\PrimeNumbersApp\\PrimeNumbersApp.csproj",
+        "projectUniqueName": "D:\\NashTech\\Assignment\\PrimeNumbersApp\\PrimeNumbersApp.csproj",
         "projectName": "PrimeNumbersApp",
-        "projectPath": "d:\\NashTech\\Assignment\\PrimeNumbersApp\\PrimeNumbersApp.csproj",
+        "projectPath": "D:\\NashTech\\Assignment\\PrimeNumbersApp\\PrimeNumbersApp.csproj",
         "packagesPath": "C:\\Users\\phamt\\.nuget\\packages\\",
-        "outputPath": "d:\\NashTech\\Assignment\\PrimeNumbersApp\\obj\\",
+        "outputPath": "D:\\NashTech\\Assignment\\PrimeNumbersApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

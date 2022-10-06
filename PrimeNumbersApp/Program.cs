@@ -34,9 +34,7 @@
         }
 
         if (number == i)
-        {
             return true;
-        }
 
         return false;
     }
