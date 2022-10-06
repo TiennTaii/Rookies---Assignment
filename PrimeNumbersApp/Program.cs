@@ -14,9 +14,7 @@
             for (int i = minimum; i <= maximum; i++)
             {
                 if (IsPrimeNumber(i))
-                {
                     Console.WriteLine(" " + i);
-                }
             }
         });
     }
@@ -28,9 +26,7 @@
         for (i = 2; i <= number - 1; i++)
         {
             if (number % i == 0)
-            {
                 return false;
-            }
         }
 
         if (number == i)
