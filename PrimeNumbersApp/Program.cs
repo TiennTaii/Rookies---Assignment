@@ -14,7 +14,9 @@
             for (int i = minimum; i <= maximum; i++)
             {
                 if (IsPrimeNumber(i))
+                {
                     Console.WriteLine(" " + i);
+                }
             }
         });
     }
