@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "L+PiggN560T18rS9SyoIpCMOQ7KFK/WSMiCCTtEPM1F/lM3kARgE0SO9npsVll1t22o9g6pY2/pMYxv0bYTaYg==",
+  "success": true,
+  "projectFilePath": "D:\\NashTech\\Assignment\\MVC\\Assignment_one\\Assignment_one.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\phamt\\.nuget\\packages\\csvhelper\\29.0.0\\csvhelper.29.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
