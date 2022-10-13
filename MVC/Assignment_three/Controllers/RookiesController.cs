@@ -1,7 +1,7 @@
-using Assignment_two.Models;
+using Assignment_three.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Assignment_two.Controllers
+namespace Assignment_three.Controllers
 {
     public class RookiesController : Controller
     {

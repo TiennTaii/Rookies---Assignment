@@ -1,4 +1,4 @@
-namespace Assignment_two.Models
+namespace Assignment_three.Models
 {
     public class PersonModel
     {

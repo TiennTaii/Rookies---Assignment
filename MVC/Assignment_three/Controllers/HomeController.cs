@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Assignment_two.Models;
+using Assignment_three.Models;
 
-namespace Assignment_two.Controllers;
+namespace Assignment_three.Controllers;
 
 public class HomeController : Controller
 {
