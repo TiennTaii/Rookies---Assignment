@@ -1,6 +1,9 @@
+using Assignment_three.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IPersonService, PersonService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

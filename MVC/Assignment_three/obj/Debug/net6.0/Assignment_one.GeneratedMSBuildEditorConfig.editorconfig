@@ -27,6 +27,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9va2llc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[d:/NashTech/Assignment/MVC/Assignment_three/Views/Rookies/DeleteResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9va2llc1xEZWxldGVSZXN1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/NashTech/Assignment/MVC/Assignment_three/Views/Rookies/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9va2llc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [d:/NashTech/Assignment/MVC/Assignment_three/Views/Rookies/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9va2llc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
