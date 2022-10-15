@@ -1,3 +1,4 @@
+using Assignment_one.Models.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Assignment_one.Controllers;
@@ -6,11 +7,6 @@ namespace Assignment_one.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
     private readonly ILogger<WeatherForecastController> _logger;
 
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
@@ -18,15 +14,28 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    [HttpPost("Create")]
+    public IActionResult CreateNewTask(NewTaskRequestModel requestModel)
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        if (string.IsNullOrWhiteSpace(requestModel.Title))
         {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+            return BadRequest("some message");
+        }
+
+        requestModel.Title = requestModel.Title.Trim();
+        if (requestModel.Title.Length < 5 || requestModel.Title.Length > 20)
+        {
+            return BadRequest("some message");
+        }
+
+        try
+        {
+            var newID = 1;
+            return Ok(newID);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
     }
 }
