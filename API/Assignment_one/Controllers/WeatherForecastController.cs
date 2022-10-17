@@ -14,6 +14,12 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
+    public static List<NewTaskRequestModel> _task = new List<NewTaskRequestModel>
+    {
+
+    };
+
+
     [HttpPost("Create")]
     public IActionResult CreateNewTask(NewTaskRequestModel requestModel)
     {
@@ -23,6 +29,7 @@ public class WeatherForecastController : ControllerBase
         }
 
         requestModel.Title = requestModel.Title.Trim();
+
         if (requestModel.Title.Length < 5 || requestModel.Title.Length > 20)
         {
             return BadRequest("some message");
@@ -30,9 +37,66 @@ public class WeatherForecastController : ControllerBase
 
         try
         {
-            var newID = 1;
-            return Ok(newID);
+            var task = new NewTaskRequestModel
+            {
+                Id = Guid.NewGuid(),
+                Title = requestModel.Title,
+                IsCompleted = false
+            };
+
+            _task.Add(task);
+
+            return Ok(_task);
         }
+
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
+    }
+
+    [HttpGet("")]
+    public IActionResult GetAll()
+    {
+        return Ok(_task);
+    }
+
+    [HttpPost("{id}")]
+    public IActionResult Get(string id)
+    {
+        try
+        {
+            var getId = _task.SingleOrDefault(p => p.Id == Guid.Parse(id));
+
+            if (getId == null)
+            {
+                return NotFound();
+            }
+            return Ok(getId);
+        }
+
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(string id)
+    {
+        try
+        {
+            var deleteId = _task.SingleOrDefault(p => p.Id == Guid.Parse(id));
+
+            if (deleteId == null)
+            {
+                return NotFound();
+            }
+            _task.Remove(deleteId);
+
+            return Ok();
+        }
+
         catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex);

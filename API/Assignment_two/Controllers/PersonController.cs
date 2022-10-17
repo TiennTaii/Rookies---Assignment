@@ -26,6 +26,7 @@ public class PersonController : ControllerBase
         return from item in data
                select new PersonDetailsModel
                {
+                   Id = item.Id,
                    FirstName = item.FirstName,
                    LastName = item.LastName,
                    Gender = item.Gender,
@@ -35,7 +36,7 @@ public class PersonController : ControllerBase
                };
     }
 
-    [HttpGet("{index:int}")]
+    [HttpGet("{id:int}")]
     public IActionResult? GetOne(int index)
     {
         try

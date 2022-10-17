@@ -1,5 +1,6 @@
 using Assignment_one.Models;
 
+
 namespace Assignment_one.Services
 {
     public class PersonService : IPersonService
@@ -8,6 +9,7 @@ namespace Assignment_one.Services
         {
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Tai",
                 LastName = "Pham Tien",
                 Gender = "Male",
@@ -18,6 +20,7 @@ namespace Assignment_one.Services
             },
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Tien",
                 LastName = "Nguyen Van",
                 Gender = "Male",
@@ -28,6 +31,7 @@ namespace Assignment_one.Services
             },
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Lan",
                 LastName = "Phan Thi",
                 Gender = "Female",
@@ -38,6 +42,7 @@ namespace Assignment_one.Services
             },
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Tuyet",
                 LastName = "Tran Thi",
                 Gender = "Female",
@@ -48,6 +53,7 @@ namespace Assignment_one.Services
             },
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Quyen",
                 LastName = "Tran Thi",
                 Gender = "Female",
@@ -58,6 +64,7 @@ namespace Assignment_one.Services
             },
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Long",
                 LastName = "Nguyen Hai",
                 Gender = "Male",
@@ -68,6 +75,7 @@ namespace Assignment_one.Services
             },
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Tuan",
                 LastName = "Nguyen Van",
                 Gender = "Male",
@@ -78,6 +86,7 @@ namespace Assignment_one.Services
             },
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Minh",
                 LastName = "Nguyen Tuan",
                 Gender = "Male",
@@ -88,6 +97,7 @@ namespace Assignment_one.Services
             },
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Hoan",
                 LastName = "Nguyen Van",
                 Gender = "Male",
@@ -98,6 +108,7 @@ namespace Assignment_one.Services
             },
             new PersonModel
             {
+                Id = Guid.NewGuid(),
                 FirstName = "Dung",
                 LastName = "Do Trung",
                 Gender = "Male",
@@ -110,6 +121,10 @@ namespace Assignment_one.Services
 
         public List<PersonModel> GetAll()
         {
+            foreach (var person in _people)
+            {
+                person.Id = new Guid();
+            };
             return _people;
         }
 
