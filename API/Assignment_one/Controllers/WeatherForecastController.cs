@@ -54,14 +54,14 @@ public class WeatherForecastController : ControllerBase
         }
     }
 
-    [HttpGet("")]
+    [HttpGet("all")]
     public IActionResult GetAll()
     {
         return Ok(_task);
     }
 
-    [HttpPost("{id}")]
-    public IActionResult Get(string id)
+    [HttpPost("get-one")]
+    public IActionResult GetOne(string id)
     {
         try
         {
@@ -80,7 +80,7 @@ public class WeatherForecastController : ControllerBase
         }
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("delete")]
     public IActionResult Delete(string id)
     {
         try
@@ -102,21 +102,30 @@ public class WeatherForecastController : ControllerBase
         }
     }
 
-    // [HttpPost("bulk")]
-    // public IActionResult CreateBulkTask(List<NewTaskRequestModel> requestModel)
+    [HttpPut("edit")]
+    public IActionResult Edit(string id, NewTaskRequestModel model)
+    {
+        var getId = _task.SingleOrDefault(p => p.Id == Guid.Parse(id));
+
+        if (getId != null)
+        {
+            getId.Title = model.Title;
+            getId.IsCompleted = model.IsCompleted;
+
+            return new JsonResult(getId);
+        }
+
+        return NotFound();
+    }
+
+    // [HttpPost("addBulk")]
+    // public IActionResult AddBulk()
     // {
-    //     foreach (var item in requestModel)
+    //     var task = new NewsStyleUriParser
     //     {
-    //         CreateBulkTask(requestModel);
+
     //     }
-
-    //     return Task.CompletedTask;
     // }
 
-    // private void CreateBulkTask_Service(NewTaskRequestModel requestModel)
-    // {
-    //     System.Threading.Thread.Sleep(10);
-    // }
 
-    // private
 }
