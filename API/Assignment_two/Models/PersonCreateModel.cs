@@ -5,8 +5,6 @@ namespace Assignment_one.Models
 {
     public class PersonCreateModel
     {
-        public Guid Id { get; set; }
-
         [DisplayName("Last Name")]
         [Required(ErrorMessage = "{0} is required!!!")]
         public string? LastName { get; set; }

@@ -119,52 +119,29 @@ namespace Assignment_one.Services
             }
         };
 
-        public List<PersonModel> GetAll()
-        {
-            foreach (var person in _people)
-            {
-                person.Id = new Guid();
-            };
-            return _people;
-        }
-
-        public PersonModel? GetOne(int index)
-        {
-            if (index >= 0 && index < _people.Count)
-            {
-                return _people[index];
-            }
-            return null;
-        }
-
         public PersonModel Create(PersonModel model)
         {
-            _people.Add(model);
-
-            return model;
+            throw new NotImplementedException();
         }
 
-        public PersonModel? Update(int index, PersonModel model)
+        public PersonModel? Delete(Guid id)
         {
-            if (index >= 0 && index < _people.Count)
-            {
-                _people[index] = model;
-
-                return model;
-            }
-            return null;
+            throw new NotImplementedException();
         }
 
-        public PersonModel? Delete(int index)
+        public List<PersonModel> GetAll()
         {
-            if (index >= 0 && index < _people.Count)
-            {
-                var person = _people[index];
-                _people.RemoveAt(index);
+            throw new NotImplementedException();
+        }
 
-                return person;
-            }
-            return null;
+        public PersonModel? GetOne(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PersonModel? Update(Guid id, PersonModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

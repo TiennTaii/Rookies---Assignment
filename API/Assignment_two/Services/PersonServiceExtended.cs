@@ -113,13 +113,9 @@ namespace Assignment_one.Services
             return _people;
         }
 
-        public PersonModel? GetOne(int index)
+        public PersonModel? GetOne(Guid id)
         {
-            if (index >= 0 && index < _people.Count)
-            {
-                return _people[index];
-            }
-            return null;
+            return _people.SingleOrDefault(p => p.Id.Equals(id));
         }
 
         public PersonModel Create(PersonModel model)
@@ -129,40 +125,31 @@ namespace Assignment_one.Services
             return model;
         }
 
-        public PersonModel? Update(int index, PersonModel model)
+        public PersonModel? Update(Guid id, PersonModel model)
         {
-            if (index >= 0 && index < _people.Count)
+            var index = _people.FindIndex(p => p.Id.Equals(id));
+
+            if (index >= 0)
             {
                 _people[index] = model;
 
-                return model;
+                return _people[index];
             }
+
             return null;
         }
 
-        public PersonModel? Delete(int index)
+        public PersonModel? Delete(Guid id)
         {
-            if (index >= 0 && index < _people.Count)
-            {
-                var person = _people[index];
+            var index = _people.FindIndex(p => p.Id.Equals(id));
 
+            if (index >= 0)
+            {
                 _people.RemoveAt(index);
 
-                return person;
+                return _people[index];
             }
-            return null;
-        }
 
-        public PersonModel? Delete(int index, PersonModel model)
-        {
-            if (index >= 0 && index < _people.Count)
-            {
-                var person = _people[index];
-
-                _people.RemoveAt(index);
-
-                return person;
-            }
             return null;
         }
     }

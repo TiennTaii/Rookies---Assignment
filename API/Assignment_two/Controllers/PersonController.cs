@@ -36,12 +36,12 @@ public class PersonController : ControllerBase
                };
     }
 
-    [HttpGet("{id:int}")]
-    public IActionResult? GetOne(int index)
+    [HttpGet("{id:Guid}")]
+    public IActionResult? GetOne(Guid id)
     {
         try
         {
-            var data = _personService.GetOne(index);
+            var data = _personService.GetOne(id);
             if (data == null)
             {
                 return NotFound();
@@ -49,6 +49,7 @@ public class PersonController : ControllerBase
 
             return new JsonResult(new PersonDetailsModel
             {
+                Id = data.Id,
                 FirstName = data.FirstName,
                 LastName = data.LastName,
                 Gender = data.Gender,
@@ -92,8 +93,8 @@ public class PersonController : ControllerBase
         }
     }
 
-    [HttpPut("{index:int}")]
-    public IActionResult Update(int index, PersonUpdateModel model)
+    [HttpPut("{id:Guid}")]
+    public IActionResult Update(Guid id, PersonUpdateModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -102,7 +103,7 @@ public class PersonController : ControllerBase
 
         try
         {
-            var data = _personService.GetOne(index);
+            var data = _personService.GetOne(id);
 
             if (data == null)
             {
@@ -117,7 +118,7 @@ public class PersonController : ControllerBase
                 data.PhoneNumber = model.PhoneNumber;
                 data.BirthPlace = model.BirthPlace;
 
-                var result = _personService.Update(index, data);
+                var result = _personService.Update(id, data);
 
                 return new JsonResult(result);
             }
@@ -130,19 +131,19 @@ public class PersonController : ControllerBase
         }
     }
 
-    [HttpDelete("{index:int}")]
-    public IActionResult Delete(int index)
+    [HttpDelete("{id:Guid}")]
+    public IActionResult Delete(Guid id)
     {
         try
         {
-            var data = _personService.GetOne(index);
+            var data = _personService.GetOne(id);
 
             if (data == null)
             {
                 return NotFound();
             }
 
-            var result = _personService.Delete(index);
+            var result = _personService.Delete(id);
 
             return new JsonResult(result);
         }

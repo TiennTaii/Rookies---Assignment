@@ -19,7 +19,6 @@ public class WeatherForecastController : ControllerBase
 
     };
 
-
     [HttpPost("Create")]
     public IActionResult CreateNewTask(NewTaskRequestModel requestModel)
     {
@@ -102,4 +101,22 @@ public class WeatherForecastController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, ex);
         }
     }
+
+    // [HttpPost("bulk")]
+    // public IActionResult CreateBulkTask(List<NewTaskRequestModel> requestModel)
+    // {
+    //     foreach (var item in requestModel)
+    //     {
+    //         CreateBulkTask(requestModel);
+    //     }
+
+    //     return Task.CompletedTask;
+    // }
+
+    // private void CreateBulkTask_Service(NewTaskRequestModel requestModel)
+    // {
+    //     System.Threading.Thread.Sleep(10);
+    // }
+
+    // private
 }
