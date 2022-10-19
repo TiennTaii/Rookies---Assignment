@@ -19,7 +19,7 @@ public class WeatherForecastController : ControllerBase
 
     };
 
-    [HttpPost("Create")]
+    [HttpPost("create")]
     public IActionResult CreateNewTask(NewTaskRequestModel requestModel)
     {
         if (string.IsNullOrWhiteSpace(requestModel.Title))
@@ -118,14 +118,30 @@ public class WeatherForecastController : ControllerBase
         return NotFound();
     }
 
-    // [HttpPost("addBulk")]
-    // public IActionResult AddBulk()
-    // {
-    //     var task = new NewsStyleUriParser
-    //     {
+    [HttpPost("add-bulk")]
+    public IActionResult AddBulk(List<NewTaskRequestModel> models)
+    {
+        var tasks = new List<NewTaskRequestModel>();
 
-    //     }
-    // }
+        foreach (var item in models)
+        {
+            tasks.Add(new NewTaskRequestModel
+            {
+                Id = Guid.NewGuid(),
+                Title = item.Title,
+                IsCompleted = item.IsCompleted
+            });
+        }
+        _task.AddRange(tasks);
+
+        return Ok(tasks);
+    }
+
+    [HttpPost("delete-bulk")]
+    public IActionResult DeleteBulk(List<NewTaskRequestModel> models)
+    {
 
 
+        return Ok();
+    }
 }
