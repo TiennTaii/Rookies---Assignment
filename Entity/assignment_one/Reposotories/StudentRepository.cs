@@ -6,11 +6,8 @@ namespace assignment_one.Services
 {
     public class StudentRepository : BaseRepository<Student>, IStudentRepository
     {
-
         public StudentRepository(StudentManagementContext context) : base(context)
         {
         }
     }
-
-
-}
+};
