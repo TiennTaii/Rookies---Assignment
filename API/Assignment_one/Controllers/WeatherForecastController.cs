@@ -138,10 +138,10 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpPost("delete-bulk")]
-    public IActionResult DeleteBulk(List<NewTaskRequestModel> models)
+    public IActionResult DeleteBulk(List<Guid> ids)
     {
+        _task.RemoveAll(t => ids.Contains(t.Id));
 
-
-        return Ok();
+        return Ok(ids);
     }
 }
