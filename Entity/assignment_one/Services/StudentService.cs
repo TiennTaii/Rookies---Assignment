@@ -44,6 +44,7 @@ public class StudentService : IStudentService
             return false;
         }
         _studentRepository.Delete(student);
+
         _studentRepository.SaveChanges();
 
         return true;

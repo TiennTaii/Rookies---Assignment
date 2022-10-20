@@ -1,4 +1,3 @@
-
 using assignment_one.Models;
 using Microsoft.EntityFrameworkCore;
 
