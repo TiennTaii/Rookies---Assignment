@@ -8,7 +8,6 @@ namespace assignment_two.Data
         public ProductDataContext(DbContextOptions<ProductDataContext> options) : base(options)
         {
         }
-        // cau hinh entity
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>()
@@ -19,12 +18,14 @@ namespace assignment_two.Data
                         .Property(cat => cat.Id)
                         .HasColumnName("CategoryId")
                         .HasColumnType("int")
+                        .UseIdentityColumn(1)
                         .IsRequired();
 
             modelBuilder.Entity<Category>()
                         .Property(cat => cat.Name)
                         .HasColumnName("CategoryName")
                         .HasColumnType("nvarchar")
+                        .HasMaxLength(500)
                         .IsRequired();
 
             modelBuilder.Entity<Product>()
@@ -40,18 +41,21 @@ namespace assignment_two.Data
                        .Property(cat => cat.Id)
                        .HasColumnName("ProductId")
                        .HasColumnType("int")
+                       .UseIdentityColumn(1)
                        .IsRequired();
 
             modelBuilder.Entity<Product>()
                         .Property(cat => cat.Name)
                         .HasColumnName("ProductName")
                         .HasColumnType("nvarchar")
+                        .HasMaxLength(100)
                         .IsRequired();
 
             modelBuilder.Entity<Product>()
                         .Property(cat => cat.Manufacture)
                         .HasColumnName("ProductManufacture")
                         .HasColumnType("nvarchar")
+                        .HasMaxLength(500)
                         .IsRequired();
 
             modelBuilder.Entity<Product>()
