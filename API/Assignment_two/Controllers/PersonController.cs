@@ -153,4 +153,13 @@ public class PersonController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, ex);
         }
     }
+
+    [HttpPost("filter-name")]
+    public IActionResult FilterName(string name)
+    {
+        var result = _personService.;
+
+        return new JsonResult(result);
+    }
+
 }

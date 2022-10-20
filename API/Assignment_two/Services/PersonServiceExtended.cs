@@ -152,5 +152,28 @@ namespace Assignment_one.Services
 
             return null;
         }
+
+        public PersonModel? FilterName(string name)
+        {
+            PersonModel[] names = _people.ToArray();
+            var result = new PersonModel[names.Length];
+            var j = 0;
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                if (names[i].FirstName.Equals(name))
+                {
+                    result[j] = names[j];
+                    j++;
+                }
+            }
+
+            foreach (var item in result)
+            {
+                return item;
+            }
+
+            return null;
+        }
     }
 }

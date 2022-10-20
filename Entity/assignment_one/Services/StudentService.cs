@@ -1,6 +1,7 @@
-using EntityFrameworkCore_Day1.DTOs;
+using assignment_one.DTOs;
 using assignment_one.Models;
 using StudentManagement.Repositories;
+using StudentManagement.Models;
 
 namespace StudentManagement.Services;
 
@@ -34,81 +35,48 @@ public class StudentService : IStudentService
         };
     }
 
-    // public int? Create(StudentCreateModel createModel)
-    // {
-    //     var createStudent = new Student
-    //     {
-    //         FirstName = createModel.FirstName,
-    //         LastName = createModel.LastName,
-    //         City = createModel.City,
-    //         State = createModel.State
-    //     };
+    public bool Delete(int id)
+    {
+        var student = _studentRepository.Get(x => x.Id == id);
 
-    //     createStudent = _studentRepository.Create(createStudent);
+        if (student == null)
+        {
+            return false;
+        }
+        _studentRepository.Delete(student);
+        _studentRepository.SaveChanges();
 
-    //     return createStudent?.Id;
-    // }
+        return true;
+    }
 
-    // public bool Delete(int id)
-    // {
-    //     return _studentRepository.Delete(id);
-    // }
+    public IEnumerable<Student> GetAll()
+    {
+        var students = _studentRepository.GetAll(x => true);
 
-    // public IEnumerable<StudentViewModel> GetAll()
-    // {
-    //     var viewModels = _studentRepository
-    //         .GetAll()
-    //         .Select(student => new StudentViewModel
-    //         {
-    //             FirstName = student.FirstName,
-    //             LastName = student.LastName,
-    //             City = student.City,
-    //             State = student.State
-    //         });
+        return students;
+    }
 
-    //     return viewModels;
-    // }
+    public UpdateRespone Update(int id, UpdateRequest updateRequest)
+    {
+        var student = _studentRepository.Get(x => x.Id == id);
 
-    // public StudentViewModel? GetById(int id)
-    // {
-    //     var student = _studentRepository.GetById(id);
+        if (student == null) return null;
 
-    //     if (student == null) return null;
+        student.FirstName = updateRequest.FirstName;
+        student.LastName = updateRequest.LastName;
+        student.City = updateRequest.City;
+        student.State = updateRequest.State;
 
-    //     var viewModel = new StudentViewModel
-    //     {
-    //         FirstName = student.FirstName,
-    //         LastName = student.LastName,
-    //         City = student.City,
-    //         State = student.State
-    //     };
+        student = _studentRepository.Update(student);
 
-    //     return viewModel;
-    // }
+        _studentRepository.SaveChanges();
 
-    // public StudentViewModel? Update(int id, StudentUpdateModel updateModel)
-    // {
-    //     var student = _studentRepository.GetById(id);
-
-    //     if (student == null) return null;
-
-    //     student.FirstName = updateModel.FirstName;
-    //     student.LastName = updateModel.LastName;
-    //     student.City = updateModel.City;
-    //     student.State = updateModel.State;
-
-    //     student = _studentRepository.Update(student);
-
-    //     if (student == null) return null;
-
-    //     var viewModel = new StudentViewModel
-    //     {
-    //         FirstName = student.FirstName,
-    //         LastName = student.LastName,
-    //         City = student.City,
-    //         State = student.State
-    //     };
-
-    //     return viewModel;
-    // }
+        return new UpdateRespone
+        {
+            FirstName = student.FirstName,
+            LastName = student.LastName,
+            City = student.City,
+            State = student.State
+        };
+    }
 }

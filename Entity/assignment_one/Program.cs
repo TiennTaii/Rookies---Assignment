@@ -1,8 +1,14 @@
 using assignment_one.Data;
+using assignment_one.Services;
 using Microsoft.EntityFrameworkCore;
+using StudentManagement.Repositories;
+using StudentManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IStudentService, StudentService>();
+
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 // Add services to the container.
 builder.Services.AddDbContext<StudentManagementContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnString")));

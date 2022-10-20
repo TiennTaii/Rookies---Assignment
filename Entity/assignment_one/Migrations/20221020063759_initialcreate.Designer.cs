@@ -11,7 +11,7 @@ using assignment_one.Data;
 namespace StudentManagement.Migrations
 {
     [DbContext(typeof(StudentManagementContext))]
-    [Migration("20221019092756_initialcreate")]
+    [Migration("20221020063759_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

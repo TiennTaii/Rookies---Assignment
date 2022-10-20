@@ -1,4 +1,4 @@
-namespace EntityFrameworkCore_Day1.DTOs
+namespace assignment_one.DTOs
 {
     public class AddStudentResponse
     {
