@@ -8,62 +8,76 @@ namespace assignment_two.Data
         public ProductDataContext(DbContextOptions<ProductDataContext> options) : base(options)
         {
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>()
                         .ToTable("Category")
-            .HasKey(cat => cat.Id);
+            .HasKey(c => c.Id);
 
             modelBuilder.Entity<Category>()
-                        .Property(cat => cat.Id)
+                        .Property(c => c.Id)
                         .HasColumnName("CategoryId")
                         .HasColumnType("int")
-                        .UseIdentityColumn(1)
+                        .UseIdentityColumn(1)//
                         .IsRequired();
 
             modelBuilder.Entity<Category>()
-                        .Property(cat => cat.Name)
+                        .Property(c => c.CategoryName)
                         .HasColumnName("CategoryName")
                         .HasColumnType("nvarchar")
-                        .HasMaxLength(500)
-                        .IsRequired();
+                        .HasMaxLength(500);
 
             modelBuilder.Entity<Product>()
                         .ToTable("Product")
-            .HasKey(p => p.Id);
+                        .HasKey(p => p.Id);
 
             modelBuilder.Entity<Product>()
-                        .HasOne<Category>(cat => cat.Category)
-                        .WithMany(cat => cat.Products)
-                        .HasForeignKey(cat => cat.CategoryId);
+                        .HasOne<Category>(p => p.Category)
+                        .WithMany(p => p.Products)
+                        .HasForeignKey(p => p.CategoryId);
 
             modelBuilder.Entity<Product>()
-                       .Property(cat => cat.Id)
+                       .Property(p => p.Id)
                        .HasColumnName("ProductId")
                        .HasColumnType("int")
-                       .UseIdentityColumn(1)
+                       .UseIdentityColumn(1)//
                        .IsRequired();
 
             modelBuilder.Entity<Product>()
-                        .Property(cat => cat.Name)
+                        .Property(p => p.ProductName)
                         .HasColumnName("ProductName")
                         .HasColumnType("nvarchar")
-                        .HasMaxLength(100)
-                        .IsRequired();
+                        .HasMaxLength(500);
 
             modelBuilder.Entity<Product>()
-                        .Property(cat => cat.Manufacture)
+                        .Property(p => p.Manufacture)
                         .HasColumnName("ProductManufacture")
                         .HasColumnType("nvarchar")
-                        .HasMaxLength(500)
-                        .IsRequired();
+                        .HasMaxLength(500);
 
             modelBuilder.Entity<Product>()
-                        .Property(cat => cat.CategoryId)
+                        .Property(p => p.CategoryId)
                         .HasColumnName("ProductCategoryId")
                         .HasColumnType("int")
                         .IsRequired();
+
+            modelBuilder.Entity<Category>()
+                        .HasData(new Category
+                        {
+                            Id = 1,
+                            CategoryName = "Computers"
+                        });
+            modelBuilder.Entity<Product>()
+                        .HasData(new Product
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            ProductName = "Thinkpad",
+                            Manufacture = "Nhat Ban"
+                        });
         }
-        public DbSet<Category> Categories { get; set; } = null!;
+        public DbSet<Category>? Categories { get; set; }
+        public DbSet<Product>? Products { get; set; }
     }
 }

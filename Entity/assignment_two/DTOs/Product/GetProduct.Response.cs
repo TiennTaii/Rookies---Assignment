@@ -1,11 +1,10 @@
-namespace assignment_two.Models
+namespace assignment_two.DTOs.Product
 {
-    public class Product
+    public class GetProductResponse
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
         public string? ProductName { get; set; }
         public string? Manufacture { get; set; }
-        public Category? Category { get; set; }
         public int CategoryId { get; set; }
     }
 }

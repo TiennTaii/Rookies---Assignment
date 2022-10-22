@@ -61,7 +61,10 @@ public class StudentService : IStudentService
     {
         var student = _studentRepository.Get(x => x.Id == id);
 
-        if (student == null) return null;
+        if (student == null)
+        {
+            return null;
+        }
 
         student.FirstName = updateRequest.FirstName;
         student.LastName = updateRequest.LastName;

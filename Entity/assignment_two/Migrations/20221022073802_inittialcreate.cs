@@ -4,7 +4,7 @@
 
 namespace assignment_two.Migrations
 {
-    public partial class initialcreate : Migration
+    public partial class inittialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace assignment_two.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar", nullable: false)
+                    CategoryName = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -27,8 +27,8 @@ namespace assignment_two.Migrations
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar", nullable: false),
-                    ProductManufacture = table.Column<string>(type: "nvarchar", nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    ProductManufacture = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     ProductCategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -41,6 +41,16 @@ namespace assignment_two.Migrations
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "CategoryId", "CategoryName" },
+                values: new object[] { 1, "Computers" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "ProductCategoryId", "ProductManufacture", "ProductName" },
+                values: new object[] { 1, 1, "Nhat Ban", "Thinkpad" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_ProductCategoryId",

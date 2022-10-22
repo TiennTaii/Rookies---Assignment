@@ -30,14 +30,21 @@ namespace assignment_two.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar")
+                    b.Property<string>("CategoryName")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
                         .HasColumnName("CategoryName");
 
                     b.HasKey("Id");
 
                     b.ToTable("Category", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryName = "Computers"
+                        });
                 });
 
             modelBuilder.Entity("assignment_two.Models.Product", b =>
@@ -54,13 +61,13 @@ namespace assignment_two.Migrations
                         .HasColumnName("ProductCategoryId");
 
                     b.Property<string>("Manufacture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
                         .HasColumnName("ProductManufacture");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar")
+                    b.Property<string>("ProductName")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
                         .HasColumnName("ProductName");
 
                     b.HasKey("Id");
@@ -68,6 +75,15 @@ namespace assignment_two.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Product", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Manufacture = "Nhat Ban",
+                            ProductName = "Thinkpad"
+                        });
                 });
 
             modelBuilder.Entity("assignment_two.Models.Product", b =>
