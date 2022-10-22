@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "assignment_two": {
+    "assignment_one": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
