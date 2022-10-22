@@ -11,7 +11,7 @@ using assignment_two.Data;
 namespace assignment_two.Migrations
 {
     [DbContext(typeof(ProductDataContext))]
-    [Migration("20221022073802_inittialcreate")]
+    [Migration("20221022084813_inittialcreate")]
     partial class inittialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

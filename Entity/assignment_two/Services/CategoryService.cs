@@ -1,12 +1,137 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using assignment_two.DTOs.Category;
+using assignment_two.Models;
+using assignment_two.Repositories;
+using assignment_two.Services.Interfaces;
 
 namespace assignment_two.Services
 {
-    public class CategoryService
+    public class CategoryService : ICategoryService
     {
-        
+        private readonly ICategoryRepository _categoryRepository;
+
+        public CategoryService(ICategoryRepository categoryRepository)
+        {
+            _categoryRepository = categoryRepository;
+        }
+
+        public AddCategoryResponse Create(AddCategoryRequest createModel)
+        {
+            var transaction = _categoryRepository.DatabaseTransaction();
+            try
+            {
+                var createCategory = new Category
+                {
+                    CategoryName = createModel.CategoryName
+                };
+
+                var category = _categoryRepository.Create(createCategory);
+
+                _categoryRepository.SaveChanges();
+
+                transaction.Commit();
+
+                return new AddCategoryResponse
+                {
+                    CategoryId = category.Id,
+                    CategoryName = category.CategoryName
+                };
+            }
+            catch
+            {
+                transaction.RollBack();
+
+                return null;
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            var transaction = _categoryRepository.DatabaseTransaction();
+
+            try
+            {
+                var deleteCategory = _categoryRepository.Get(c => c.Id == id);
+
+                if (deleteCategory != null)
+                {
+                    bool result = _categoryRepository.Delete(deleteCategory);
+
+                    _categoryRepository.SaveChanges();
+
+                    transaction.Commit();
+
+                    return result;
+                }
+
+                return false;
+            }
+            catch
+            {
+                transaction.RollBack();
+
+                return false;
+            }
+        }
+
+        public IEnumerable<GetCategoryResponse> GetAll()
+        {
+            var listProduct = _categoryRepository.GetAll(c => true).Select(category => new GetCategoryResponse
+            {
+                CategoryId = category.Id,
+                CategoryName = category.CategoryName
+            });
+
+            return listProduct;
+        }
+
+        public GetCategoryResponse GetById(int id)
+        {
+            var requestCategory = _categoryRepository.Get(p => p.Id == id);
+
+            if (requestCategory != null)
+            {
+                return new GetCategoryResponse
+                {
+                    CategoryId = requestCategory.Id,
+                    CategoryName = requestCategory.CategoryName
+                };
+            }
+
+            return null;
+        }
+
+        public UpdateCategoryResponse Update(int id, UpdateCategoryRequest updateModel)
+        {
+            var transaction = _categoryRepository.DatabaseTransaction();
+
+            try
+            {
+                var category = _categoryRepository.Get(c => c.Id == id);
+
+                if (category != null)
+                {
+                    category.CategoryName = updateModel.CategoryName;
+
+                    var updatedCategory = _categoryRepository.Update(category);
+
+                    _categoryRepository.SaveChanges();
+                    transaction.Commit();
+
+                    return new UpdateCategoryResponse
+                    {
+                        CategoryId = updatedCategory.Id,
+                        CategoryName = updatedCategory.CategoryName
+                    };
+                }
+
+                return null;
+            }
+            catch
+            {
+                transaction.RollBack();
+
+                return null;
+            }
+        }
     }
 }
