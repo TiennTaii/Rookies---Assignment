@@ -19,69 +19,72 @@ namespace assignment_two.Services
 
         public AddProductResponse Create(AddProductRequest createModel)
         {
-            var transaction = _productRepository.DatabaseTransaction();
-            try
+            using (var transaction = _productRepository.DatabaseTransaction())
             {
-                var category = _categoryRepository.Get(s => s.Id == createModel.CategoryId);
-
-                if (category != null)
+                try
                 {
-                    var createProduct = new Product
-                    {
-                        ProductName = createModel.ProductName,
-                        Manufacture = createModel.Manufacture,
-                        CategoryId = category.Id,
-                    };
-                    var product = _productRepository.Create(createProduct);
+                    var category = _categoryRepository.Get(s => s.Id == createModel.CategoryId);
 
-                    _productRepository.SaveChanges();
-                    transaction.Commit();
-
-                    return new AddProductResponse
+                    if (category != null)
                     {
-                        ProductId = product.Id,
-                        ProductName = product.ProductName,
-                        Manufacture = product.Manufacture,
-                        CategoryId = product.CategoryId
-                    };
+                        var createProduct = new Product
+                        {
+                            ProductName = createModel.ProductName,
+                            Manufacture = createModel.Manufacture,
+                            CategoryId = category.Id,
+                        };
+                        var product = _productRepository.Create(createProduct);
+
+                        _productRepository.SaveChanges();
+                        transaction.Commit();
+
+                        return new AddProductResponse
+                        {
+                            ProductId = product.Id,
+                            ProductName = product.ProductName,
+                            Manufacture = product.Manufacture,
+                            CategoryId = product.CategoryId
+                        };
+                    }
+
+                    return null;
                 }
+                catch
+                {
+                    transaction.RollBack();
 
-                return null;
-            }
-            catch
-            {
-                transaction.RollBack();
-
-                return null;
+                    return null;
+                }
             }
         }
 
         public bool Delete(int id)
         {
-            var transaction = _productRepository.DatabaseTransaction();
-
-            try
+            using (var transaction = _productRepository.DatabaseTransaction())
             {
-                var deleteProduct = _productRepository.Get(p => p.Id == id);
-
-                if (deleteProduct != null)
+                try
                 {
-                    bool result = _productRepository.Delete(deleteProduct);
+                    var deleteProduct = _productRepository.Get(p => p.Id == id);
 
-                    _productRepository.SaveChanges();
+                    if (deleteProduct != null)
+                    {
+                        bool result = _productRepository.Delete(deleteProduct);
 
-                    transaction.Commit();
+                        _productRepository.SaveChanges();
 
-                    return result;
+                        transaction.Commit();
+
+                        return result;
+                    }
+
+                    return false;
                 }
+                catch
+                {
+                    transaction.RollBack();
 
-                return false;
-            }
-            catch
-            {
-                transaction.RollBack();
-
-                return false;
+                    return false;
+                }
             }
         }
 
@@ -119,46 +122,47 @@ namespace assignment_two.Services
 
         public UpdateProductResponse Update(int id, UpdateProductRequest updateModel)
         {
-            var transaction = _productRepository.DatabaseTransaction();
-
-            try
+            using (var transaction = _productRepository.DatabaseTransaction())
             {
-                var product = _productRepository.Get(p => p.Id == id);
-
-                if (product != null)
+                try
                 {
-                    var category = _categoryRepository.Get(c => c.Id == updateModel.CategoryId);
+                    var product = _productRepository.Get(p => p.Id == id);
 
-                    if (category != null)
+                    if (product != null)
                     {
-                        product.ProductName = updateModel.ProductName;
-                        product.Manufacture = updateModel.Manufacture;
-                        product.CategoryId = updateModel.CategoryId;
+                        var category = _categoryRepository.Get(c => c.Id == updateModel.CategoryId);
 
-                        var updatedProduct = _productRepository.Update(product);
-
-                        _productRepository.SaveChanges();
-                        transaction.Commit();
-
-                        return new UpdateProductResponse
+                        if (category != null)
                         {
-                            ProductId = updatedProduct.Id,
-                            ProductName = updatedProduct.ProductName,
-                            Manufacture = updatedProduct.Manufacture,
-                            CategoryId = updatedProduct.CategoryId
-                        };
+                            product.ProductName = updateModel.ProductName;
+                            product.Manufacture = updateModel.Manufacture;
+                            product.CategoryId = updateModel.CategoryId;
+
+                            var updatedProduct = _productRepository.Update(product);
+
+                            _productRepository.SaveChanges();
+                            transaction.Commit();
+
+                            return new UpdateProductResponse
+                            {
+                                ProductId = updatedProduct.Id,
+                                ProductName = updatedProduct.ProductName,
+                                Manufacture = updatedProduct.Manufacture,
+                                CategoryId = updatedProduct.CategoryId
+                            };
+                        }
+
+                        return null;
                     }
 
                     return null;
                 }
+                catch
+                {
+                    transaction.RollBack();
 
-                return null;
-            }
-            catch
-            {
-                transaction.RollBack();
-
-                return null;
+                    return null;
+                }
             }
         }
     }

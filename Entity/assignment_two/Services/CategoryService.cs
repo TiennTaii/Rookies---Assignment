@@ -16,60 +16,63 @@ namespace assignment_two.Services
 
         public AddCategoryResponse Create(AddCategoryRequest createModel)
         {
-            var transaction = _categoryRepository.DatabaseTransaction();
-            try
+            using (var transaction = _categoryRepository.DatabaseTransaction())
             {
-                var createCategory = new Category
+                try
                 {
-                    CategoryName = createModel.CategoryName
-                };
+                    var createCategory = new Category
+                    {
+                        CategoryName = createModel.CategoryName
+                    };
 
-                var category = _categoryRepository.Create(createCategory);
-
-                _categoryRepository.SaveChanges();
-
-                transaction.Commit();
-
-                return new AddCategoryResponse
-                {
-                    CategoryId = category.Id,
-                    CategoryName = category.CategoryName
-                };
-            }
-            catch
-            {
-                transaction.RollBack();
-
-                return null;
-            }
-        }
-
-        public bool Delete(int id)
-        {
-            var transaction = _categoryRepository.DatabaseTransaction();
-
-            try
-            {
-                var deleteCategory = _categoryRepository.Get(c => c.Id == id);
-
-                if (deleteCategory != null)
-                {
-                    bool result = _categoryRepository.Delete(deleteCategory);
+                    var category = _categoryRepository.Create(createCategory);
 
                     _categoryRepository.SaveChanges();
 
                     transaction.Commit();
 
-                    return result;
+                    return new AddCategoryResponse
+                    {
+                        CategoryId = category.Id,
+                        CategoryName = category.CategoryName
+                    };
                 }
+                catch
+                {
+                    transaction.RollBack();
 
-                return false;
+                    return null;
+                }
             }
-            catch
-            {
-                transaction.RollBack();
+        }
 
-                return false;
+        public bool Delete(int id)
+        {
+            using (var transaction = _categoryRepository.DatabaseTransaction())
+            {
+                try
+                {
+                    var deleteCategory = _categoryRepository.Get(c => c.Id == id);
+
+                    if (deleteCategory != null)
+                    {
+                        bool result = _categoryRepository.Delete(deleteCategory);
+
+                        _categoryRepository.SaveChanges();
+
+                        transaction.Commit();
+
+                        return result;
+                    }
+
+                    return false;
+                }
+                catch
+                {
+                    transaction.RollBack();
+
+                    return false;
+                }
             }
         }
 
@@ -102,35 +105,36 @@ namespace assignment_two.Services
 
         public UpdateCategoryResponse Update(int id, UpdateCategoryRequest updateModel)
         {
-            var transaction = _categoryRepository.DatabaseTransaction();
-
-            try
+            using (var transaction = _categoryRepository.DatabaseTransaction())
             {
-                var category = _categoryRepository.Get(c => c.Id == id);
-
-                if (category != null)
+                try
                 {
-                    category.CategoryName = updateModel.CategoryName;
+                    var category = _categoryRepository.Get(c => c.Id == id);
 
-                    var updatedCategory = _categoryRepository.Update(category);
-
-                    _categoryRepository.SaveChanges();
-                    transaction.Commit();
-
-                    return new UpdateCategoryResponse
+                    if (category != null)
                     {
-                        CategoryId = updatedCategory.Id,
-                        CategoryName = updatedCategory.CategoryName
-                    };
+                        category.CategoryName = updateModel.CategoryName;
+
+                        var updatedCategory = _categoryRepository.Update(category);
+
+                        _categoryRepository.SaveChanges();
+                        transaction.Commit();
+
+                        return new UpdateCategoryResponse
+                        {
+                            CategoryId = updatedCategory.Id,
+                            CategoryName = updatedCategory.CategoryName
+                        };
+                    }
+
+                    return null;
                 }
+                catch
+                {
+                    transaction.RollBack();
 
-                return null;
-            }
-            catch
-            {
-                transaction.RollBack();
-
-                return null;
+                    return null;
+                }
             }
         }
     }
