@@ -1,7 +1,6 @@
 using assignment_one.DTOs;
 using assignment_one.Models;
 using StudentManagement.Repositories;
-using StudentManagement.Models;
 
 namespace StudentManagement.Services;
 
@@ -55,6 +54,24 @@ public class StudentService : IStudentService
         var students = _studentRepository.GetAll(x => true);
 
         return students;
+    }
+
+    public AddStudentRequest GetById(int id)
+    {
+        var student = _studentRepository.Get(x => x.Id == id);
+
+        if (student != null)
+        {
+            return new AddStudentRequest
+            {
+                FirstName = student.FirstName,
+                LastName = student.LastName,
+                City = student.City,
+                State = student.State
+            };
+        }
+
+        return null;
     }
 
     public UpdateRespone Update(int id, UpdateRequest updateRequest)

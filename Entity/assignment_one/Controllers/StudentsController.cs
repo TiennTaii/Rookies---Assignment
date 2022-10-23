@@ -37,6 +37,14 @@ public class StudentsController : ControllerBase
         }
     }
 
+    [HttpGet("{id}")]
+    public AddStudentRequest GetById(int id)
+    {
+        var student = _studentService.GetById(id);
+
+        return student;
+    }
+
     [HttpDelete("{id}")]
     public bool Delete(int id)
     {
