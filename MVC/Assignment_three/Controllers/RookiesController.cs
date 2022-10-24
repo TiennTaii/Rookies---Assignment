@@ -6,8 +6,6 @@ namespace Assignment_three.Controllers
 {
     public class RookiesController : Controller
     {
-
-
         public readonly ILogger<RookiesController> _logger;
         public readonly IPersonService _personService;
 
