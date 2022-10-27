@@ -1,0 +1,8 @@
+﻿@{
+    ViewData["Title"] = "Delete result screen";
+    var deletedPersonName = TempData["DeletedPersonName"];
+}
+
+<h2 class="display-4 text-center text-info">Person @deletedPersonName was removed from the list successfully!</h2>
+<a type="submit" class="btn btn-secondary" role="button" asp-controller="Rookies" asp-action="Index">Back
+    to list</a>
