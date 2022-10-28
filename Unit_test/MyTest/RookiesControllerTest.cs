@@ -49,6 +49,32 @@ public class Tests
     }
 
     [Test]
+    public void Create_RedirectToAction()
+    {
+        _rookiesController.ModelState.AddModelError("FirstName", "Required");
+
+        var result = _rookiesController.Create(model: null);
+
+        Assert.IsInstanceOf<ViewResult>(result);
+    }
+
+    [Test]
+    public void Create_ReturnView()
+    {
+        var newCreatePerson = new PersonCreateModel()
+        {
+            FirstName = "Tai",
+        };
+        var result = _rookiesController.Create(newCreatePerson);
+
+        Assert.IsInstanceOf<RedirectToActionResult>(result);
+
+        var actual = (RedirectToActionResult)result;
+
+        Assert.AreEqual("Index", actual.ActionName);
+    }
+
+    [Test]
     public void Update_BadRequest_StateIsValid()
     {
         _rookiesController.ModelState.AddModelError("FistName", "FieldRequired");
@@ -110,5 +136,25 @@ public class Tests
         var contentResult = (ContentResult)result;
 
         Assert.AreEqual("NotFound", contentResult.Content);
+    }
+
+    [Test]
+    public void DeleteOnePerson_Test()
+    {
+        int index = 2;
+        _personServiceMock.Setup(p => p.Delete(index)).Callback(() =>
+        {
+            _data.Remove(_data[2]);
+        }).Returns(_data[2]);
+
+        var controller = new RookiesController(_loggerMock.Object, _personServiceMock.Object);
+        var expected = _data.Count - 1;
+
+        var result = controller.Delete(2);
+        var actual = _data.Count;
+
+        Assert.IsInstanceOf<RedirectToActionResult>(result);
+        Assert.IsNotNull(result);
+        Assert.AreEqual(expected, actual);
     }
 }
