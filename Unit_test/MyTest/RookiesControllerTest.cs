@@ -47,4 +47,68 @@ public class Tests
 
         Assert.AreEqual(1, list.Count());
     }
+
+    [Test]
+    public void Update_BadRequest_StateIsValid()
+    {
+        _rookiesController.ModelState.AddModelError("FistName", "FieldRequired");
+
+        var member = new PersonModel();
+        var index = 1;
+        var updateMember = new PersonUpdateModel();
+        var result = _rookiesController.Update(index, updateMember);
+
+        Assert.IsInstanceOf<BadRequestObjectResult>(result);
+
+        var badRequestResult = (BadRequestObjectResult)result;
+        var serialize = (SerializableError)badRequestResult.Value;
+
+        Assert.AreEqual("FistName", serialize.Keys.ToList()[0] as string);
+
+    }
+
+    [Test]
+    public void Update_RedirectToAction_StateIsValid()
+    {
+        var member = new PersonModel();
+        var index = 2;
+        var updateMember = new PersonUpdateModel()
+        {
+            FirstName = "T"
+        };
+
+        var result = _rookiesController.Update(index, updateMember);
+
+        Assert.IsInstanceOf<RedirectToActionResult>(result);
+
+        var redirectToActionResult = (RedirectToActionResult)result;
+
+        Assert.Null(redirectToActionResult.ControllerName);
+        Assert.AreEqual("Index", redirectToActionResult.ActionName);
+    }
+
+    [Test]
+    public void Detail_RedirectToAction_IsNull()
+    {
+        int index = 1;
+        var result = _rookiesController.Details(index);
+
+        Assert.IsInstanceOf<RedirectToActionResult>(result);
+    }
+
+    [Test]
+    public void Detail_Content_IsNotFound()
+    {
+        var testId = 3;
+
+        _personServiceMock.Setup(x => x.GetOne(testId)).Returns((PersonModel)null);
+
+        var result = _rookiesController.Details(testId);
+
+        Assert.IsInstanceOf<ContentResult>(result);
+
+        var contentResult = (ContentResult)result;
+
+        Assert.AreEqual("NotFound", contentResult.Content);
+    }
 }
