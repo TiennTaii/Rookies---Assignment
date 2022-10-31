@@ -44,6 +44,5 @@ namespace assignment_two.Controllers
         {
             return _categoryService.Delete(id);
         }
-
     }
 }

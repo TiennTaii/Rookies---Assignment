@@ -43,7 +43,7 @@ public class Tests
         Assert.IsInstanceOf<List<PersonModel>>(view.ViewData.Model);
         Assert.IsAssignableFrom<List<PersonModel>>(view.ViewData.Model);
 
-        var list = (List<PersonModel>)view.ViewData.Model;
+        var list = view.ViewData.Model as List<PersonModel>;
 
         Assert.AreEqual(1, list.Count());
     }
