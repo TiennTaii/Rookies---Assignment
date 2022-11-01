@@ -157,7 +157,7 @@ public class PersonController : ControllerBase
     [HttpPost("filter-name")]
     public IActionResult FilterName(string name)
     {
-        var result = _personService.;
+        var result = _personService;
 
         return new JsonResult(result);
     }
