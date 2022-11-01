@@ -154,12 +154,9 @@ public class PersonController : ControllerBase
         }
     }
 
-    [HttpPost("filter-name")]
-    public IActionResult FilterName(string name)
+    [HttpGet("filter-list")]
+    public List<PersonModel> GetFilterList(string firstName, string lastName, string gender, string birthPlace)
     {
-        var result = _personService;
-
-        return new JsonResult(result);
+        return _personService.FilterList(firstName, lastName, gender, birthPlace);
     }
-
 }

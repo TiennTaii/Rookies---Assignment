@@ -153,27 +153,15 @@ namespace Assignment_one.Services
             return null;
         }
 
-        public PersonModel? FilterName(string name)
+        public List<PersonModel> FilterList(string firstName, string lastName, string gender, string birthPlace)
         {
-            PersonModel[] names = _people.ToArray();
-            var result = new PersonModel[names.Length];
-            var j = 0;
+            var loop = _people
+            .Where(f => f.FirstName == firstName)
+            .Where(l => l.LastName == lastName)
+            .Where(g => g.Gender.ToLower().Trim() == gender.ToLower().Trim())
+            .Where(b => b.BirthPlace.ToLower().Trim() == birthPlace.ToLower().Trim());
 
-            for (int i = 0; i < names.Length; i++)
-            {
-                if (names[i].FirstName.Equals(name))
-                {
-                    result[j] = names[j];
-                    j++;
-                }
-            }
-
-            foreach (var item in result)
-            {
-                return item;
-            }
-
-            return null;
+            return loop.ToList();
         }
     }
 }

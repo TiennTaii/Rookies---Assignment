@@ -129,6 +129,11 @@ namespace Assignment_one.Services
             throw new NotImplementedException();
         }
 
+        public List<PersonModel> FilterList(string firstName, string lastName, string gender, string birthPlace)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<PersonModel> GetAll()
         {
             throw new NotImplementedException();
