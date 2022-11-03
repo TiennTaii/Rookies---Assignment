@@ -18,7 +18,8 @@ public class PersonController : ControllerBase
         _personService = personService;
     }
 
-    [HttpGet("")]
+    [HttpGet]
+    [Route("all-list")]
     public IEnumerable<PersonDetailsModel> GetAll()
     {
         var data = _personService.GetAll();
@@ -36,7 +37,8 @@ public class PersonController : ControllerBase
                };
     }
 
-    [HttpGet("{id:Guid}")]
+    [HttpGet]
+    [Route("get-{id:Guid}")]
     public IActionResult? GetOne(Guid id)
     {
         try
@@ -65,7 +67,8 @@ public class PersonController : ControllerBase
         }
     }
 
-    [HttpPost("")]
+    [HttpPost]
+    [Route("add")]
     public IActionResult Create(PersonCreateModel model)
     {
         if (!ModelState.IsValid) return BadRequest();
@@ -93,7 +96,8 @@ public class PersonController : ControllerBase
         }
     }
 
-    [HttpPut("{id:Guid}")]
+    [HttpPut]
+    [Route("update-{id:Guid}")]
     public IActionResult Update(Guid id, PersonUpdateModel model)
     {
         if (!ModelState.IsValid)
@@ -131,7 +135,8 @@ public class PersonController : ControllerBase
         }
     }
 
-    [HttpDelete("{id:Guid}")]
+    [HttpDelete]
+    [Route("delete-{id:Guid}")]
     public IActionResult Delete(Guid id)
     {
         try
@@ -154,9 +159,10 @@ public class PersonController : ControllerBase
         }
     }
 
-    [HttpGet("filter-list")]
-    public List<PersonModel> GetFilterList(string firstName, string lastName, string gender, string birthPlace)
+    [HttpGet]
+    [Route("search")]
+    public List<PersonModel> GetFilterList(string fullName)
     {
-        return _personService.FilterList(firstName, lastName, gender, birthPlace);
+        return _personService.FilterName(fullName);
     }
 }

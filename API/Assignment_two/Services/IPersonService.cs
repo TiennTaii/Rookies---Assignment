@@ -9,6 +9,6 @@ namespace Assignment_one.Services
         PersonModel Create(PersonModel model);
         PersonModel? Update(Guid id, PersonModel model);
         PersonModel? Delete(Guid id);
-        List<PersonModel> FilterList(string firstName, string lastName, string gender, string birthPlace);
+        List<PersonModel> FilterName(string fullName);
     }
 }

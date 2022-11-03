@@ -153,14 +153,10 @@ namespace Assignment_one.Services
             return null;
         }
 
-        public List<PersonModel> FilterList(string firstName, string lastName, string gender, string birthPlace)
+        public List<PersonModel> FilterName(string fullName)
         {
             var loop = _people
-            .Where(f => f.FirstName == firstName)
-            .Where(l => l.LastName == lastName)
-            .Where(g => g.Gender.ToLower().Trim() == gender.ToLower().Trim())
-            .Where(b => b.BirthPlace.ToLower().Trim() == birthPlace.ToLower().Trim());
-
+            .Where(f => f.FullName.ToLower().Trim() == fullName);
             return loop.ToList();
         }
     }

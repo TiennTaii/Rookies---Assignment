@@ -129,7 +129,7 @@ namespace Assignment_one.Services
             throw new NotImplementedException();
         }
 
-        public List<PersonModel> FilterList(string firstName, string lastName, string gender, string birthPlace)
+        public List<PersonModel> FilterName(string fullName)
         {
             throw new NotImplementedException();
         }
